@@ -8,7 +8,7 @@ Building a responsive site that allows users to take timed quizzes to test their
 
 **Live Site:**
 
-Head over to https://cwarmbrunn.github.io/webapis-coding-quiz/ to view the page live!
+Head over to https://cwarmbrunn.github.io/api-coding-quiz/ to view the page live!
 
 ---
 

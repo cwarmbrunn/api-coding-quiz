@@ -15,16 +15,26 @@
 </head>
 
 <body>
-    <header>
-        <!-- Welcome Title-->
-        <h1 class="title">Welcome!</h1>
-        <p>Click the button below to begin the quiz</p>
+
+    <div id="highscores">
+        <!-- View Highscores-->
+    </div>
+
+    <div id="timer">
+        <!--See Timer Countdown-->
+    </div>
 
 
-    </header>
-    <div id="landing">
+    <div id="welcome">
+        <header>
+            <!-- Welcome Title-->
+            <h1 class="title">Welcome!</h1>
+            <p>Click the button below to begin the quiz</p>
+
+
+        </header>
         <!-- Landing Page/Homepage -->
-        <h1 class="landing-page">Coding Quiz Challenge</h1>
+        <h1>Coding Quiz Challenge</h1>
         <p>Try to answer the following questions within the time limit.
 
             <br>Keep in mind that <strong>incorrect answers will
@@ -33,12 +43,29 @@
 
         <div id="start-btn">
             <!-- Start Quiz Button -->
-            <button class="btn">Start Quiz</button>
+
+            <button id="startButton" class="btn" style="margin: 15px;">Start Quiz</button>
         </div>
+
+        <button id="submit" class="btn" style="margin: 15px;">See How You Did!</button>
     </div>
+
+
+
+    <div id="quiz-questions"></div>
+
+
+
+    <div id="results"></div>
 </body>
 
 <footer> &copy; 2022 by Christina Warmbrunn </footer>
+
+<!-- Loading in basic script here -->
 <script src="./assets/js/script.js"></script>
+
+<!-- Loading In Questions JavaScript-->
+<script src="./assets/js/questions.js"></script>
+
 
 </html>
