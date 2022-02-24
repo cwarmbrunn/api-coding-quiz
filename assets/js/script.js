@@ -4,30 +4,14 @@ const welcomeEl = document.querySelector("#welcome");
 // Start button is assigned to the startButton id
 const startButtonEl = document.querySelector("#startButton");
 
-// Connection to Quiz Questions via Window Object
-var quizQuestions = window.quizQuestions;
-
-// Submission Elements / ========================
-
-// Submit button is assigned to the submitButton id
-const submitButtonEl = document.querySelector("#submitButton");
-const goBackButtonEl = document.querySelector("#goBackButton");
-
-// User results are assigned to the results id
-const userResultsEl = document.querySelector("#results");
-const quizFormEl = document.querySelector("#quiz");
-
-// High Score Page Elements
-
-const highScoresEl = document.querySelector("#highScores");
+const quizContainer = document.getElementById("quiz");
+const resultsContainer = document.getElementById("results");
+const submitButton = document.getElementById("submit");
 
 // Universal =======================
 const timerEl = document.querySelector("#timer");
 
-//const viewScoresButton = document.querySelector("#");//
 var score = 0;
-var currentQ = 0;
-var highScores = [];
 var interval;
 var time = null;
 var count = 90;
@@ -37,7 +21,6 @@ function startTimer() {
   time = setInterval(updateTimer, 1000);
 }
 
-function renderQuestion() {}
 // Function to update timer incrementally
 function updateTimer() {
   // Add inner HTML to the "timer" element
@@ -52,7 +35,70 @@ function updateTimer() {
   }
 }
 
-function showQuestions() {}
+function buildQuiz() {
+  // Create a variable to store the user output
+  const output = [];
+
+  // For each question...
+  myQuestions.forEach((currentQuestion, questionNumber) => {
+    // Variable to store list of possible answers
+
+    const answers = [];
+
+    // and for each available answer ....
+    for (letter in currentQuestion.answers) {
+      // add an HTML radio button
+      answers.push(
+        `<label> <input type="radio"question${questionNumber}" class="btn" value=${letter}">${letter}:${currentQuestion.answers[letter]}</label>`
+      );
+    }
+
+    // Add this question and its answers to the output
+
+    output.push(`<div class="questions"> ${currentQuestion.question} </div>
+    <div class="answers"> ${answer.join("")}</div>`);
+  });
+
+  // Finally combine our output list into one string of HTML and put it on the page
+  quizContainer.innerHTML = output.join("");
+}
+
+function showResults() {
+  // gather answers container from our quiz
+  const answerContainer = quizContainer.querySelector(".answers");
+
+  let numCorrect = 0;
+
+  // for each question
+
+  myQuestions.forEach((currentQuestion, questionNumber) => {
+    // Find selected answer
+    const answerContainer = answerContainers[questionNumber];
+    const selector = `input[name=question${questionNumber}]:checked`;
+    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+    // If answer is correct
+    if (userAnswer === currentQuestion.correctAnswer) {
+      // add to the number of correct answers
+      numCorrect++;
+
+      // color the answers green
+      answerContainers[questionNumber].style.color = "lightgreen";
+    }
+    // If answer is wrong or blank
+    else {
+      // Color the answers red
+      answerContainers[questionNumber].style.color = "red";
+    }
+  });
+
+  // Show number of correct answers out of total
+  resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+}
+
+// On user submit, show results
+
+submitButton.addEventListener("click", showResults);
 
 //Need to set "Penalty" Function for when question is answered wrong - 10 seconds are deducted from the timer
 
@@ -60,7 +106,7 @@ function showQuestions() {}
 
 // Key value pair for initial input and high score - score will be the time remaining on the clock - reference robot-gladiators
 
-function showResults() {}
+// Create a highscores HTML?
 
 // Hides Elements
 function hide(element) {
@@ -72,11 +118,55 @@ function hide(element) {
 function show(element) {
   element.style.display = "block";
 }
-
 // When user clicks the start button, run the following functions
 startButtonEl.addEventListener("click", function () {
-  hide(welcomeEl);
-  hide(userResultsEl);
+  buildQuiz();
   startTimer();
-  show(quizQuestionsEl);
 });
+// Questions =======================
+
+const myQuestions = [
+  {
+    question: "Commonly used data types DO NOT include",
+    answers: {
+      a: "Strings",
+      b: "Booleans",
+      c: "Alerts",
+      d: "Numbers",
+      e: "None of the above",
+    },
+    correctAnswer: "b",
+  },
+
+  {
+    question: "What does API stand for?",
+    answers: {
+      a: "Application Programming Instance",
+      b: "Application Program Instance",
+      c: "Application Programming Interface",
+      d: "None of the above",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question:
+      "What is the observation of a user behavior, such as a click, called?",
+    answers: {
+      a: "Event Listener",
+      b: "Event Attribute",
+      c: "Event ",
+      d: "None of the Above",
+    },
+    correctAnswer: "a",
+  },
+  {
+    question: "What is a callback function?",
+    answers: {
+      a: "A function inside of an object",
+      b: "A function inside of a stylesheet",
+      c: "A function inside of a function",
+      d: "A function inside of the DOM",
+    },
+    correctAnswer: "c",
+  },
+];

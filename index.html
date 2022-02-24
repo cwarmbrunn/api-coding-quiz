@@ -16,10 +16,6 @@
 
 <body>
 
-    <div id="highscores">
-        <!-- View Highscores-->
-    </div>
-
     <div id="timer">
         <!--See Timer Countdown-->
     </div>
@@ -40,46 +36,36 @@
             <br>Keep in mind that <strong>incorrect answers will
                 penalize your score/time by <em>10 seconds</em></strong>
         </p>
-
-        <div id="start-btn">
-            <!-- Start Quiz Button -->
-
-            <button id="startButton" class="btn" style="margin: 15px;">Start Quiz</button>
-        </div>
+        <button id="startButton" class="btn" style="margin: 15px;">Start Quiz</button>
 
 
     </div>
+
+    <!-- Start Quiz Button -->
+
 
     <!-- Quiz Questions Will Load Here -->
 
 
-    <div id="quiz">
-        <h1 class="question"></h1>
-        <div class="row">
-            <button type="button" class="btn" id="0"></button>
-        </div>
-        <div class="row">
-            <button type="button" class="btn" id="1"></button>
-        </div>
-        <div class="row">
-            <button type="button" class="btn" id="2"></button>
-        </div>
-        <div class="row">
-            <button type="button" class="btn" id="3"></button>
-        </div>
-    </div>
+    <div id="quiz"></div>
+    <button class="btn" id="submit" style="margin: 15px;">Submit Quiz</button>
 
 
 
     <!-- Results Will Load Here -->
     <div id="results">
+
+        <!-- Results -->
+
         <h1>Congratulations - You Finished!</h1>
         <p>Your final score is:<span id="score"></span></p>
         <p>Enter your intials: <input type="text" id="user-initials"></p>
-        <a href="./highscores.html"><button type="button" class="btn" id="userSubmit"> Submit</button></a>
-
+        <a href="./highscores.html"><button type="button" class="btn" id="userSubmit"> Submit Highscore</button></a>
     </div>
 
+    <div id="highscores">
+        <!-- View Highscores-->
+    </div>
 
 </body>
 
