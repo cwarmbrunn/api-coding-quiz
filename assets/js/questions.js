@@ -1,9 +1,10 @@
 // Questions for quiz located in an array
 
-var javaQuestions = [
+window.quizQuestions = [
   {
+    id: 1,
     question: "Commonly used data types DO NOT include",
-   choices: {
+    choices: {
       a: "Strings",
       b: "Booleans",
       c: "Alerts",
@@ -14,6 +15,7 @@ var javaQuestions = [
   },
 
   {
+    id: 2,
     question: "What does API stand for?",
     choices: {
       a: "Application Programming Instance",
@@ -24,6 +26,7 @@ var javaQuestions = [
     answer: "c",
   },
   {
+    id: 3,
     question:
       "What is the observation of a user behavior, such as a click, called?",
     choices: {
@@ -35,6 +38,7 @@ var javaQuestions = [
     answer: "a",
   },
   {
+    id: 4,
     question: "What is a callback function?",
     choices: {
       a: "A function inside of an object",
@@ -45,4 +49,3 @@ var javaQuestions = [
     answer: "c",
   },
 ];
-

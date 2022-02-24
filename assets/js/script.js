@@ -1,35 +1,48 @@
-// Welcome Page Elements //
+// Welcome Page Elements ======================
 const welcomeEl = document.querySelector("#welcome");
 
-// Start button is assigned to the startButton class
+// Start button is assigned to the startButton id
 const startButtonEl = document.querySelector("#startButton");
 
-// Welcome Page Elements End //
+// Connection to Quiz Questions via Window Object
+var quizQuestions = window.quizQuestions;
 
-// Quiz Input Section
-const quizQuestionsEl = document.querySelector("#javaQuestions");
+// Submission Elements / ========================
 
-// Submit button is assigned to the submitButton class
+// Submit button is assigned to the submitButton id
 const submitButtonEl = document.querySelector("#submitButton");
+const goBackButtonEl = document.querySelector("#goBackButton");
 
-// Quiz Input Selection End //
+// User results are assigned to the results id
+const userResultsEl = document.querySelector("#results");
+const quizFormEl = document.querySelector("#quiz");
 
-// Universal //
+// High Score Page Elements
+
+const highScoresEl = document.querySelector("#highScores");
+
+// Universal =======================
 const timerEl = document.querySelector("#timer");
+
 //const viewScoresButton = document.querySelector("#");//
 var score = 0;
-var currentQuestion = 0;
+var currentQ = 0;
 var highScores = [];
 var interval;
+var time = null;
 var count = 90;
 // Timer Countdown Functionality
 
-var time = setInterval(startTimer, 1000);
-
 function startTimer() {
+  time = setInterval(updateTimer, 1000);
+}
+
+function renderQuestion() {}
+// Function to update timer incrementally
+function updateTimer() {
   // Add inner HTML to the "timer" element
   document.getElementById("timer").innerHTML =
-    "<p> Time Left: " + count + " second(s) left";
+    "<p> Time Left: " + count + " second(s) left</p>";
   // Subtract time from countdown
   count--;
   // Conditional for when timer reaches 0
@@ -39,11 +52,15 @@ function startTimer() {
   }
 }
 
+function showQuestions() {}
+
 //Need to set "Penalty" Function for when question is answered wrong - 10 seconds are deducted from the timer
 
-function generateQuestion() {
-  quizQuestionsEl.textContent = console.log(javaQuestions);
-}
+// Will store score to localStorage here - needs to save as a string convert to a string and then a JSON structure
+
+// Key value pair for initial input and high score - score will be the time remaining on the clock - reference robot-gladiators
+
+function showResults() {}
 
 // Hides Elements
 function hide(element) {
@@ -55,27 +72,11 @@ function hide(element) {
 function show(element) {
   element.style.display = "block";
 }
-// Results Container
-const resultsContainer = document.getElementById("results");
 
-// Will store score to localStorage here - needs to save as a string convert to a string and then a JSON structure
-
-// Key value pair for initial input and high score - score will be the time remaining on the clock - reference robot-gladiators
-
-// Create a highscores HTML?
-
-function showResults() {}
-
-// Display quiz right away!
-
-// When user clicks the start button, trigger startTimer function
+// When user clicks the start button, run the following functions
 startButtonEl.addEventListener("click", function () {
   hide(welcomeEl);
+  hide(userResultsEl);
   startTimer();
-  generateQuestion();
   show(quizQuestionsEl);
 });
-
-// When the submit button is clicked - show the results
-
-/* submitButton.addEventListener("click", showResults); */

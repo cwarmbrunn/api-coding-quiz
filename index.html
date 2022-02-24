@@ -47,25 +47,54 @@
             <button id="startButton" class="btn" style="margin: 15px;">Start Quiz</button>
         </div>
 
-        <button id="submit" class="btn" style="margin: 15px;">See How You Did!</button>
+
+    </div>
+
+    <!-- Quiz Questions Will Load Here -->
+
+
+    <div id="quiz">
+        <h1 class="question"></h1>
+        <div class="row">
+            <button type="button" class="btn" id="0"></button>
+        </div>
+        <div class="row">
+            <button type="button" class="btn" id="1"></button>
+        </div>
+        <div class="row">
+            <button type="button" class="btn" id="2"></button>
+        </div>
+        <div class="row">
+            <button type="button" class="btn" id="3"></button>
+        </div>
     </div>
 
 
 
-    <div id="quiz-questions"></div>
+    <!-- Results Will Load Here -->
+    <div id="results">
+        <h1>Congratulations - You Finished!</h1>
+        <p>Your final score is:<span id="score"></span></p>
+        <p>Enter your intials: <input type="text" id="user-initials"></p>
+        <a href="./highscores.html"><button type="button" class="btn" id="userSubmit"> Submit</button></a>
+
+    </div>
 
 
-
-    <div id="results"></div>
 </body>
 
-<footer> &copy; 2022 by Christina Warmbrunn </footer>
+
+<footer>
+    <p>&copy; 2022 by Christina Warmbrunn</p>
+
+</footer>
+
+
+<!-- PRIORITY: Loading In Questions JavaScript-->
+<script src="./assets/js/questions.js"></script>
 
 <!-- Loading in basic script here -->
 <script src="./assets/js/script.js"></script>
-
-<!-- Loading In Questions JavaScript-->
-<script src="./assets/js/questions.js"></script>
 
 
 </html>

@@ -56,10 +56,16 @@ header {
 }
 
 .btn:active {
-  box-shadow: 0 0px var(--secondary);
+  box-shadow: 0 0px var(--tertiary);
+  color: var(--primary);
   top: 0;
 }
-
+a {
+  text-decoration: none;
+}
+.row {
+  margin: 10px;
+}
 /* Footer Styling */
 
 footer {
