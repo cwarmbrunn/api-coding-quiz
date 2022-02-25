@@ -28,6 +28,19 @@ header {
   padding-top: 0px;
   font-size: 20px;
 }
+/* Question Styling */
+
+.question {
+  font-weight: 700px;
+}
+
+.answers {
+  display: block;
+}
+
+.answers label {
+  display: block;
+}
 
 /* Button Styling */
 .start-btn {
@@ -51,7 +64,8 @@ header {
 }
 
 .btn:hover {
-  box-shadow: 0 3px var(--tertiary);
+  background-color: rgba(233, 170, 159, 0.8);
+  box-shadow: 0 0px var(--tertiary);
   top: -3px;
 }
 
