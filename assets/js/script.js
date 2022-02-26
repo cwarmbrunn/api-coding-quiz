@@ -87,10 +87,36 @@ function updateTimer() {
     "<p> Time Left: " + count + " second(s) left</p>";
   // Subtract time from countdown
   count--;
+
   // Conditional for when timer reaches 0
   if (count === -1) {
     // Clear interval
     clearInterval(time);
+  }
+}
+
+// Start Quiz Function - Timer Runs
+function startQuiz() {
+  startTimer();
+}
+// Check Answer Function
+function checkAnswer() {
+  // Conditional for Correct Answer - Verification
+  if (
+    (questions[currentQuestion].answers =
+      questions[currentQuestion].correctAnswer)
+  ) {
+    alert("Correct!");
+
+    // Increase Question
+    currentQuestion++;
+
+    // Conditional for Incorrect Answer
+  } else if (
+    questions[currentQuestion].answers !=
+    questions[currentQuestion].correctAnswer
+  ) {
+    alert("Incorrect Answer"); // Penalty of 10 Seconds
   }
 }
 
@@ -110,7 +136,7 @@ function getNextQuestion() {
     "<button class='opt-1'>" +
     questions[currentQuestion].answers.a +
     "</button>";
-
+  
   // Insert Options - Choice B
   document.getElementById("option-2").innerHTML =
     "<button class='opt-2'>" +
@@ -128,28 +154,6 @@ function getNextQuestion() {
     "<button class ='opt-4'>" +
     questions[currentQuestion].answers.d +
     "</button>";
-}
-function startQuiz() {
-  startTimer();
-}
-function checkAnswer() {
-  // Conditional for Correct Answer - Verification
-  if (
-    questions[currentQuestion].answers ===
-    questions[currentQuestion].correctAnswer
-  ) {
-    alert("Correct!");
-
-    // Increase Question
-    currentQuestion++;
-
-    // Conditional for Incorrect Answer
-  } else if (
-    questions[currentQuestion].answers ===
-    questions[currentQuestion].correctAnswer
-  ) {
-    alert("Incorrect Answer"); // Penalty of 10 Seconds
-  }
 }
 
 // Will store score to localStorage here - needs to save as a string convert to a string and then a JSON structure
