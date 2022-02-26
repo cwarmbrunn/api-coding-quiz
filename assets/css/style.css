@@ -20,6 +20,10 @@ body {
   font-size: 20px;
 }
 
+.question {
+  font-weight: bolder;
+  font-size: 25px;
+}
 /* Header Styling */
 
 header {
@@ -46,7 +50,7 @@ header {
 .start-btn {
   padding-top: 200px;
 }
-.btn {
+button {
   outline: none;
   border: none;
   background: var(--primary);
@@ -55,6 +59,7 @@ header {
   font-weight: bolder;
   font-size: 22px;
   line-height: 22px;
+  margin: 15px;
   margin: 16px, 16px, 16px, 20px;
   padding: 14px 34px;
   top: -4px;
@@ -63,13 +68,13 @@ header {
   cursor: pointer;
 }
 
-.btn:hover {
+button:hover {
   background-color: rgba(233, 170, 159, 0.8);
   box-shadow: 0 0px var(--tertiary);
   top: -3px;
 }
 
-.btn:active {
+button:active {
   box-shadow: 0 0px var(--tertiary);
   color: var(--primary);
   top: 0;

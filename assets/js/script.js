@@ -14,20 +14,26 @@ const questionText = document.getElementById('question-text')
 // Start button is assigned to the startButton id
 const startButtonEl = document.querySelector("#startButton");
 
+//
+
+const Opt1El = document.querySelector(".opt-1");
+const Opt2El = document.querySelector(".opt-2");
+const Opt3El = document.querySelector(".opt-3");
+const Opt4El = document.querySelector(".opt-4");
+
 // Quiz Questions =======================
 let currentQuestion = 0;
 
 let questions = [
   {
-    question: "Commonly used data types DO NOT include",
+    question: "Commonly used data types DO NOT include?",
     answers: {
       a: "Strings",
       b: "Booleans",
       c: "Alerts",
       d: "Numbers",
-      e: "None of the above",
     },
-    correctAnswer: "b",
+    correctAnswer: "b: Booleans",
   },
 
   {
@@ -38,7 +44,7 @@ let questions = [
       c: "Application Programming Interface",
       d: "None of the above",
     },
-    correctAnswer: "c",
+    correctAnswer: "c: Application Programming Interface",
   },
   {
     question:
@@ -49,7 +55,7 @@ let questions = [
       c: "Event ",
       d: "None of the Above",
     },
-    correctAnswer: "a",
+    correctAnswer: "a:Event Listener",
   },
   {
     question: "What is a callback function?",
@@ -59,7 +65,7 @@ let questions = [
       c: "A function inside of a function",
       d: "A function inside of the DOM",
     },
-    correctAnswer: "c",
+    correctAnswer: " c: A function inside of a function",
   },
 ];
 // Universal =======================
@@ -88,11 +94,63 @@ function updateTimer() {
   }
 }
 
+function getNextQuestion() {
+  questions[currentQuestion].question;
+
+  // Insert Question Text - Heading 1
+  document.getElementById("question-text").innerHTML =
+    "<h1 class='question'> Q:" +
+    " " +
+    questions[currentQuestion].question +
+    "</h1>";
+
+  // Insert Options - Choice A
+
+  document.getElementById("option-1").innerHTML =
+    "<button class='opt-1'>" +
+    questions[currentQuestion].answers.a +
+    "</button>";
+
+  // Insert Options - Choice B
+  document.getElementById("option-2").innerHTML =
+    "<button class='opt-2'>" +
+    questions[currentQuestion].answers.b +
+    "</button>";
+
+  //Insert Options - Choice C
+  document.getElementById("option-3").innerHTML =
+    "<button class='opt-3'>" +
+    questions[currentQuestion].answers.c +
+    "</button>";
+
+  // Insert Options - Choice D
+  document.getElementById("option-4").innerHTML =
+    "<button class ='opt-4'>" +
+    questions[currentQuestion].answers.d +
+    "</button>";
+}
 function startQuiz() {
   startTimer();
 }
+function checkAnswer() {
+  // Conditional for Correct Answer - Verification
+  if (
+    questions[currentQuestion].answers ===
+    questions[currentQuestion].correctAnswer
+  ) {
+    alert("Correct!");
 
-//Need to set "Penalty" Function for when question is answered wrong - 10 seconds are deducted from the timer
+    // Increase Question
+    currentQuestion++;
+
+    // Conditional for Incorrect Answer
+  } else if (
+    questions[currentQuestion].answers ===
+    questions[currentQuestion].correctAnswer
+  ) {
+    alert("Incorrect Answer"); // Penalty of 10 Seconds
+  }
+}
 
 // Will store score to localStorage here - needs to save as a string convert to a string and then a JSON structure
 
@@ -112,4 +170,5 @@ function show(element) {
 startButtonEl.addEventListener("click", function () {
   hide(welcomeEl);
   startQuiz();
+  getNextQuestion();
 });
