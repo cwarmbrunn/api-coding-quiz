@@ -136,7 +136,7 @@ function getNextQuestion() {
     "<button class='opt-1'>" +
     questions[currentQuestion].answers.a +
     "</button>";
-  
+
   // Insert Options - Choice B
   document.getElementById("option-2").innerHTML =
     "<button class='opt-2'>" +
@@ -175,4 +175,8 @@ startButtonEl.addEventListener("click", function () {
   hide(welcomeEl);
   startQuiz();
   getNextQuestion();
+});
+
+Opt1El.addEventListener("click", function () {
+  checkAnswer();
 });
