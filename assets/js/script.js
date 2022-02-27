@@ -130,6 +130,8 @@ function getNextQuestion() {
     questions[currentQuestion].answers.a +
     "</button>";
 
+  // Event Listener - Choice A
+
   document.querySelector(".opt-1").addEventListener("click", function () {
     var user_ans = this.getAttribute("data-ans");
     checkAnswer(user_ans);
@@ -143,12 +145,13 @@ function getNextQuestion() {
     questions[currentQuestion].answers.b +
     "</button>";
 
+  // Event Listener - Choice B
   document.querySelector(".opt-2").addEventListener("click", function () {
     var user_ans = this.getAttribute("data-ans");
     checkAnswer(user_ans);
   });
 
-  //Insert Options - Choice C
+  // Insert Options - Choice C
   document.getElementById("option-3").innerHTML =
     "<button class='opt-3'data ans=" +
     questions[currentQuestion].answers.c +
@@ -156,6 +159,7 @@ function getNextQuestion() {
     questions[currentQuestion].answers.c +
     "</button>";
 
+  // Event Listener - Choice C
   document.querySelector(".opt-3").addEventListener("click", function () {
     var user_ans = this.getAttribute("data-ans");
     checkAnswer(user_ans);
@@ -169,6 +173,7 @@ function getNextQuestion() {
     questions[currentQuestion].answers.d;
   ("</button>");
 
+  // Event Listener - Choice D
   document.querySelector(".opt-4").addEventListener("click", function () {
     var user_ans = this.getAttribute("data-ans");
     checkAnswer(user_ans);
@@ -176,6 +181,14 @@ function getNextQuestion() {
 }
 
 // Will store score to localStorage here - needs to save as a string convert to a string and then a JSON structure
+// var scoreInput = document.querySelector("#score");
+// var userInput = document.querySelector("#userID");
+
+// var user = {
+//   userID: userInput.value.trim(),
+//   scoreInput: scoreInput.value.trim(),
+// };
+// localStorage.setItem("user", JSON.stringify(user));
 
 // Key value pair for initial input and high score - score will be the time remaining on the clock - reference robot-gladiators
 
@@ -189,6 +202,7 @@ function hide(element) {
 function show(element) {
   element.style.display = "block";
 }
+
 // When user clicks the start button, run the following functions
 startButtonEl.addEventListener("click", function () {
   hide(welcomeEl);
