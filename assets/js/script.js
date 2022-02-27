@@ -58,7 +58,7 @@ let questions = [
       c: "A function inside of a function",
       d: "A function inside of the DOM",
     },
-    correctAnswer: " A function inside of a function",
+    correctAnswer: "A function inside of a function",
   },
 ];
 // Universal =======================
@@ -85,6 +85,7 @@ function updateTimer() {
   if (count === -1) {
     // Clear interval
     clearInterval(time);
+    // send to highscore HTML page to add their initials and score
   }
 }
 
@@ -93,21 +94,20 @@ function startQuiz() {
   startTimer();
 }
 // Check Answer Function
-function checkAnswer() {
-  console.log(questions[currentQuestion].answers);
-  console.log(!correctAnswer);
+function checkAnswer(userInput) {
   // Conditional for Correct Answer - Verification
-  if (
-    questions[currentQuestion].answers ===
-    questions[currentQuestion].correctAnswer
-  ) {
+  if (userInput === questions[currentQuestion].correctAnswer) {
     alert("Correct!");
 
     currentQuestion++; // Move to the next question
-
+    getNextQuestion();
     // Conditional for Incorrect Answer
   } else {
     alert("Incorrect!");
+    count -= 10;
+    // check if count is zero or negative redirect them to high score
+    currentQuestion++;
+    getNextQuestion();
   }
 }
 
@@ -124,43 +124,54 @@ function getNextQuestion() {
   // Insert Options - Choice A
 
   document.getElementById("option-1").innerHTML =
-    "<button class='opt-1'>" +
+    "<button class='opt-1'data-ans=" +
+    questions[currentQuestion].answers.a +
+    ">" +
     questions[currentQuestion].answers.a +
     "</button>";
 
   document.querySelector(".opt-1").addEventListener("click", function () {
-    checkAnswer(); // Run parameter option 1 
-    return
+    var user_ans = this.getAttribute("data-ans");
+    checkAnswer(user_ans);
   });
 
   // Insert Options - Choice B
   document.getElementById("option-2").innerHTML =
-    "<button class='opt-2'>" +
+    "<button class='opt-2'data-ans=" +
+    questions[currentQuestion].answers.b +
+    ">" +
     questions[currentQuestion].answers.b +
     "</button>";
 
   document.querySelector(".opt-2").addEventListener("click", function () {
-    checkAnswer();
+    var user_ans = this.getAttribute("data-ans");
+    checkAnswer(user_ans);
   });
 
   //Insert Options - Choice C
   document.getElementById("option-3").innerHTML =
-    "<button class='opt-3'>" +
+    "<button class='opt-3'data ans=" +
+    questions[currentQuestion].answers.c +
+    ">" +
     questions[currentQuestion].answers.c +
     "</button>";
 
   document.querySelector(".opt-3").addEventListener("click", function () {
-    checkAnswer();
+    var user_ans = this.getAttribute("data-ans");
+    checkAnswer(user_ans);
   });
 
   // Insert Options - Choice D
   document.getElementById("option-4").innerHTML =
-    "<button class ='opt-4'>" +
+    "<button class ='opt-4' data-ans=" +
     questions[currentQuestion].answers.d +
-    "</button>";
+    ">" +
+    questions[currentQuestion].answers.d;
+  ("</button>");
 
   document.querySelector(".opt-4").addEventListener("click", function () {
-    checkAnswer();
+    var user_ans = this.getAttribute("data-ans");
+    checkAnswer(user_ans);
   });
 }
 
