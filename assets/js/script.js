@@ -14,13 +14,6 @@ const questionText = document.getElementById('question-text')
 // Start button is assigned to the startButton id
 const startButtonEl = document.querySelector("#startButton");
 
-//
-
-const Opt1El = document.querySelector(".opt-1");
-const Opt2El = document.querySelector(".opt-2");
-const Opt3El = document.querySelector(".opt-3");
-const Opt4El = document.querySelector(".opt-4");
-
 // Quiz Questions =======================
 let currentQuestion = 0;
 
@@ -33,7 +26,7 @@ let questions = [
       c: "Alerts",
       d: "Numbers",
     },
-    correctAnswer: "b: Booleans",
+    correctAnswer: "Booleans",
   },
 
   {
@@ -44,7 +37,7 @@ let questions = [
       c: "Application Programming Interface",
       d: "None of the above",
     },
-    correctAnswer: "c: Application Programming Interface",
+    correctAnswer: "Application Programming Interface",
   },
   {
     question:
@@ -55,7 +48,7 @@ let questions = [
       c: "Event ",
       d: "None of the Above",
     },
-    correctAnswer: "a:Event Listener",
+    correctAnswer: "Event Listener",
   },
   {
     question: "What is a callback function?",
@@ -65,7 +58,7 @@ let questions = [
       c: "A function inside of a function",
       d: "A function inside of the DOM",
     },
-    correctAnswer: " c: A function inside of a function",
+    correctAnswer: " A function inside of a function",
   },
 ];
 // Universal =======================
@@ -101,22 +94,20 @@ function startQuiz() {
 }
 // Check Answer Function
 function checkAnswer() {
+  console.log(questions[currentQuestion].answers);
+  console.log(!correctAnswer);
   // Conditional for Correct Answer - Verification
   if (
-    (questions[currentQuestion].answers =
-      questions[currentQuestion].correctAnswer)
+    questions[currentQuestion].answers ===
+    questions[currentQuestion].correctAnswer
   ) {
     alert("Correct!");
 
-    // Increase Question
-    currentQuestion++;
+    currentQuestion++; // Move to the next question
 
     // Conditional for Incorrect Answer
-  } else if (
-    questions[currentQuestion].answers !=
-    questions[currentQuestion].correctAnswer
-  ) {
-    alert("Incorrect Answer"); // Penalty of 10 Seconds
+  } else {
+    alert("Incorrect!");
   }
 }
 
@@ -137,11 +128,20 @@ function getNextQuestion() {
     questions[currentQuestion].answers.a +
     "</button>";
 
+  document.querySelector(".opt-1").addEventListener("click", function () {
+    checkAnswer(); // Run parameter option 1 
+    return
+  });
+
   // Insert Options - Choice B
   document.getElementById("option-2").innerHTML =
     "<button class='opt-2'>" +
     questions[currentQuestion].answers.b +
     "</button>";
+
+  document.querySelector(".opt-2").addEventListener("click", function () {
+    checkAnswer();
+  });
 
   //Insert Options - Choice C
   document.getElementById("option-3").innerHTML =
@@ -149,11 +149,19 @@ function getNextQuestion() {
     questions[currentQuestion].answers.c +
     "</button>";
 
+  document.querySelector(".opt-3").addEventListener("click", function () {
+    checkAnswer();
+  });
+
   // Insert Options - Choice D
   document.getElementById("option-4").innerHTML =
     "<button class ='opt-4'>" +
     questions[currentQuestion].answers.d +
     "</button>";
+
+  document.querySelector(".opt-4").addEventListener("click", function () {
+    checkAnswer();
+  });
 }
 
 // Will store score to localStorage here - needs to save as a string convert to a string and then a JSON structure
@@ -175,8 +183,4 @@ startButtonEl.addEventListener("click", function () {
   hide(welcomeEl);
   startQuiz();
   getNextQuestion();
-});
-
-Opt1El.addEventListener("click", function () {
-  checkAnswer();
 });

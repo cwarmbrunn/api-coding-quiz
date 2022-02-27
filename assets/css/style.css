@@ -76,7 +76,7 @@ button:hover {
 
 button:active {
   box-shadow: 0 0px var(--tertiary);
-  color: var(--primary);
+  color: var(--tertiary);
   top: 0;
 }
 a {
