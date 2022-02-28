@@ -14,7 +14,7 @@ const questionText = document.getElementById('question-text')
 // Start button is assigned to the startButton id
 const startButtonEl = document.querySelector("#startButton");
 
-const SubmitButtonEl = document.querySelector("#submitScores");
+const SubmitButtonEl = document.querySelector("#submitScore");
 // Quiz Questions =======================
 let currentQuestion = 0;
 
@@ -118,7 +118,6 @@ function checkAnswer(userInput) {
     } else {
       clearInterval(timer);
       endQuiz();
-  ;
     }
   }
   currentQuestion++; // Move to the next question
@@ -198,16 +197,18 @@ function getNextQuestion() {
 // Function to End Quiz
 
 function endQuiz() {
-  // score = count;
-  // document.getElementById(("score".innerHTML = "<p>" + score + "</p>"));
+  score = count;
+  document.getElementById(("score".innerHTML = "<p>" + score + "</p>"));
 
-  var scoreInput = "11";
+  var scoreInput = document.querySelector("#score");
   var userInput = document.querySelector("#userID");
 
+ // User variables go here 
   var user = {
-    userID: userInput.value.trim(),
-    scoreInput: "11",
+    userInput = userInput.value(),
+    scoreInput = count,
   };
+  console.log(scores);
   scores.push(user);
   localStorage.setItem("user", JSON.stringify(scores));
 }
@@ -234,5 +235,8 @@ if (startButtonEl) {
 
 // Submit Scores Button
 if (SubmitButtonEl) {
-  SubmitButtonEl.addEventListener("click", endQuiz);
+  SubmitButtonEl.addEventListener(
+    "click",
+    (window.location.href = "highscores.html")
+  );
 }
