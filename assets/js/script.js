@@ -35,7 +35,7 @@ let questions = [
     answers: {
       a: "Application Programming Instance",
       b: "Application Program Instance",
-      c: "Application Programming Interface",
+      c: "Application-Programming-Interface",
       d: "None of the above",
     },
     correctAnswer: "Application Programming Interface",
@@ -103,6 +103,7 @@ function startQuiz() {
 }
 // Check Answer Function
 function checkAnswer(userInput) {
+  console.log("The user has selected the answer: " + userInput);
   // Conditional for Correct Answer - Verification
   if (userInput === questions[currentQuestion].correctAnswer) {
     alert("Correct!");
@@ -113,7 +114,7 @@ function checkAnswer(userInput) {
     count -= 10;
     // check if count is zero or negative redirect them to high score
     currentQuestion++;
-    if (currentQuestion > 4) {
+    if (currentQuestion < 4) {
       getNextQuestion();
     } else {
       clearInterval(timer);
@@ -140,6 +141,7 @@ function getNextQuestion() {
   document.getElementById("option-1").innerHTML =
     "<button class='opt-1'data-ans=" +
     questions[currentQuestion].answers.a +
+    "" +
     ">" +
     questions[currentQuestion].answers.a +
     "</button>";
@@ -167,7 +169,7 @@ function getNextQuestion() {
 
   // Insert Options - Choice C
   document.getElementById("option-3").innerHTML =
-    "<button class='opt-3'data ans=" +
+    "<button class='opt-3'data-ans=" +
     questions[currentQuestion].answers.c +
     ">" +
     questions[currentQuestion].answers.c +
@@ -203,12 +205,12 @@ function endQuiz() {
   var scoreInput = document.querySelector("#score");
   var userInput = document.querySelector("#userID");
 
- // User variables go here 
+  // User variables go here
   var user = {
-    userInput = userInput.value(),
-    scoreInput = count,
+    userInput: userInput.value(),
+    scoreInput: count,
   };
-  console.log(scores);
+
   scores.push(user);
   localStorage.setItem("user", JSON.stringify(scores));
 }
