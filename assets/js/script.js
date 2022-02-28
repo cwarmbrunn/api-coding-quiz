@@ -14,7 +14,7 @@ const questionText = document.getElementById('question-text')
 // Start button is assigned to the startButton id
 const startButtonEl = document.querySelector("#startButton");
 
-const TestButtonEl = document.querySelector("#test");
+const SubmitButtonEl = document.querySelector("#submitScores");
 // Quiz Questions =======================
 let currentQuestion = 0;
 
@@ -113,12 +113,12 @@ function checkAnswer(userInput) {
     count -= 10;
     // check if count is zero or negative redirect them to high score
     currentQuestion++;
-    if (currentQuestion < 4) {
+    if (currentQuestion > 4) {
       getNextQuestion();
     } else {
       clearInterval(timer);
       endQuiz();
-      console.log(endQuiz);
+  ;
     }
   }
   currentQuestion++; // Move to the next question
@@ -208,9 +208,8 @@ function endQuiz() {
     userID: userInput.value.trim(),
     scoreInput: "11",
   };
-
   scores.push(user);
-  localStorage.setItem("user", JSON.stringify(score));
+  localStorage.setItem("user", JSON.stringify(scores));
 }
 
 // Hides Elements
@@ -233,7 +232,7 @@ if (startButtonEl) {
   });
 }
 
-// Test Button
-if (TestButtonEl) {
-  TestButtonEl.addEventListener("click", endQuiz);
+// Submit Scores Button
+if (SubmitButtonEl) {
+  SubmitButtonEl.addEventListener("click", endQuiz);
 }
