@@ -85,7 +85,7 @@ function updateTimer() {
   if (count === -1) {
     // Clear interval
     clearInterval(time);
-    // send to highscore HTML page to add their initials and score
+    // send to highscore HTML page to add their initials and score - or if timer is
   }
 }
 
@@ -99,16 +99,22 @@ function checkAnswer(userInput) {
   if (userInput === questions[currentQuestion].correctAnswer) {
     alert("Correct!");
 
-    currentQuestion++; // Move to the next question
-    getNextQuestion();
     // Conditional for Incorrect Answer
   } else {
     alert("Incorrect!");
     count -= 10;
     // check if count is zero or negative redirect them to high score
     currentQuestion++;
-    getNextQuestion();
+    if (currentQuestion < 4) {
+      getNextQuestion();
+    } else {
+      clearInterval(timer);
+      endQuiz();
+    }
   }
+  currentQuestion++; // Move to the next question
+
+  getNextQuestion();
 }
 
 function getNextQuestion() {
@@ -180,17 +186,21 @@ function getNextQuestion() {
   });
 }
 
-// Will store score to localStorage here - needs to save as a string convert to a string and then a JSON structure
-// var scoreInput = document.querySelector("#score");
-// var userInput = document.querySelector("#userID");
+// Function to End Quiz
 
-// var user = {
-//   userID: userInput.value.trim(),
-//   scoreInput: scoreInput.value.trim(),
-// };
-// localStorage.setItem("user", JSON.stringify(user));
+function endQuiz() {
+  score = count;
+  document.getElementById(("score".innerHTML = "<p>" + score + "</p>"));
 
-// Key value pair for initial input and high score - score will be the time remaining on the clock - reference robot-gladiators
+  var scoreInput = document.querySelector("#score");
+  var userInput = document.querySelector("#userID");
+
+  var user = {
+    userID: userInput.value.trim(),
+    scoreInput: scoreInput.value.trim(),
+  };
+  localStorage.setItem("user", JSON.stringify(user));
+}
 
 // Hides Elements
 function hide(element) {
