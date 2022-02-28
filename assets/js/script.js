@@ -14,6 +14,7 @@ const questionText = document.getElementById('question-text')
 // Start button is assigned to the startButton id
 const startButtonEl = document.querySelector("#startButton");
 
+const TestButtonEl = document.querySelector("#test");
 // Quiz Questions =======================
 let currentQuestion = 0;
 
@@ -67,6 +68,13 @@ const timerEl = document.querySelector("#timer");
 var interval;
 var time = null;
 var count = 90;
+
+//User score will be stored below -
+//this will grab anything that already exists in localStorage (if there is something)
+//and if there is nothing then it will set it to just an empty array
+//that way we can keep old info and not overwrite it
+let scores = JSON.parse(localStorage.getItem("user")) || [];
+
 // Timer Countdown Functionality
 
 function startTimer() {
@@ -190,17 +198,19 @@ function getNextQuestion() {
 // Function to End Quiz
 
 function endQuiz() {
-  score = count;
-  document.getElementById(("score".innerHTML = "<p>" + score + "</p>"));
+  // score = count;
+  // document.getElementById(("score".innerHTML = "<p>" + score + "</p>"));
 
-  var scoreInput = document.querySelector("#score");
+  var scoreInput = "11";
   var userInput = document.querySelector("#userID");
 
   var user = {
     userID: userInput.value.trim(),
-    scoreInput: scoreInput.value.trim(),
+    scoreInput: "11",
   };
-  localStorage.setItem("user", JSON.stringify(user));
+
+  scores.push(user);
+  localStorage.setItem("user", JSON.stringify(score));
 }
 
 // Hides Elements
@@ -216,9 +226,14 @@ function show(element) {
 
 if (startButtonEl) {
   // When user clicks the start button, run the following functions
-  addEventListener("click", function () {
+  startButtonEl.addEventListener("click", function () {
     hide(welcomeEl);
     startQuiz();
     getNextQuestion();
   });
+}
+
+// Test Button
+if (TestButtonEl) {
+  TestButtonEl.addEventListener("click", endQuiz);
 }
