@@ -110,6 +110,7 @@ function checkAnswer(userInput) {
     } else {
       clearInterval(timer);
       endQuiz();
+      console.log(endQuiz);
     }
   }
   currentQuestion++; // Move to the next question
@@ -213,9 +214,11 @@ function show(element) {
   element.style.display = "block";
 }
 
-// When user clicks the start button, run the following functions
-startButtonEl.addEventListener("click", function () {
-  hide(welcomeEl);
-  startQuiz();
-  getNextQuestion();
-});
+if (startButtonEl) {
+  // When user clicks the start button, run the following functions
+  addEventListener("click", function () {
+    hide(welcomeEl);
+    startQuiz();
+    getNextQuestion();
+  });
+}
