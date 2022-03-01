@@ -185,6 +185,7 @@ function endQuiz() {
 
 function restartQuiz() {
   show(welcomeEl);
+  clearInterval(time);
   hide(timerEl);
   hide(quizContentEl);
 }
