@@ -91,11 +91,6 @@ function updateTimer() {
     "<p> Time Left: " + count + " second(s) left</p>";
   // Subtract time from countdown
   count--;
-  // if currentQuestion is the last OR timer is 0
-  if (currentQuestion === 3 || count === 0) {
-    clearInterval(timer);
-    getInitials();
-  }
 }
 
 // Start Quiz Function - Timer Runs
@@ -116,11 +111,10 @@ function checkAnswer(userInput) {
       count -= 10;
     }
 
-    // Conditional for Incorrect Answer
+    endQuiz();
   }
 
   currentQuestion++;
-
   getNextQuestion();
 }
 
@@ -184,8 +178,11 @@ function getNextQuestion() {
 // Function to End Quiz
 
 function getInitials() {
-  if (count === -1 || currentQuestion < 3) {
+  // if currentQuestion is the last OR timer is 0
+  if (currentQuestion < 3 || count === 0) {
     initials = prompt("Enter Initials");
+  } else {
+    getNextQuestion();
   }
 }
 
@@ -196,7 +193,7 @@ function endQuiz() {
 
   // User variables go here
   var user = {
-    userInitials: initials?.value,
+    userInitials: initials,
 
     scoreInput: count,
   };
