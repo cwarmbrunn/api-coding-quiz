@@ -11,7 +11,7 @@ const userScore = document.getElementById('user-score);
 const questionText = document.getElementById('question-text')
 */
 
-// Hide the Highscore Form 
+// Hide the Highscore Form
 // document.getElementById("highscoreForm").style.visibility = "hidden";
 
 // Start button is assigned to the startButton id
@@ -128,6 +128,8 @@ function checkAnswer(userInput) {
     endQuiz();
   }
 
+  currentQuestion++;
+  
   getNextQuestion();
 }
 
@@ -192,7 +194,7 @@ function getNextQuestion() {
 
 function endQuiz() {
   // when the last questions is answered
-  document.getElementById("highscoreForm").style.visibility = "visible";
+  // document.getElementById("highscoreForm").style.visibility = "visible";
 
   score = count;
 
