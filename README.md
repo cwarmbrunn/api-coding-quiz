@@ -28,4 +28,4 @@ You can clone this repo - no special instructions to load this!
 
 **Screenshots:**
 
-![Screenshot](RELATIVE LINK GOES HERE)
+![Timed Quiz Screenshot](/assets/images/timed-quiz.jpg)
