@@ -72,10 +72,6 @@ var interval;
 var time = null;
 var count = 90;
 
-//User score will be stored below -
-//this will grab anything that already exists in localStorage (if there is something)
-//and if there is nothing then it will set it to just an empty array
-//that way we can keep old info and not overwrite it
 let scores = JSON.parse(localStorage.getItem("user")) || [];
 
 // Timer Countdown Functionality
@@ -120,7 +116,7 @@ function checkAnswer(userInput) {
 
 function getNextQuestion() {
   if (!questions[currentQuestion]) return;
-  questions[currentQuestion].question;
+  // questions[currentQuestion].question;
   // Insert Question Text - Heading 1
   document.getElementById("question-text").innerHTML =
     "<h1 class='question'> Q:" +
@@ -179,7 +175,7 @@ function getNextQuestion() {
 
 function getInitials() {
   // if currentQuestion is the last OR timer is 0
-  if (currentQuestion < 3 || count === 0) {
+  if (currentQuestion < 4) {
     initials = prompt("Enter Initials");
   } else {
     getNextQuestion();
@@ -200,6 +196,7 @@ function endQuiz() {
 
   scores.push(user);
   localStorage.setItem("user", JSON.stringify(scores));
+  alert("Quiz has ended - congrats!");
 }
 
 // Hides Elements
