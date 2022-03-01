@@ -35,7 +35,7 @@ let questions = [
     answers: {
       a: "Application Programming Instance",
       b: "Application Program Instance",
-      c: "Application-Programming-Interface",
+      c: "Application Programming Interface",
       d: "None of the above",
     },
     correctAnswer: "Application Programming Interface",
@@ -88,12 +88,16 @@ function updateTimer() {
     "<p> Time Left: " + count + " second(s) left</p>";
   // Subtract time from countdown
   count--;
-
+  // if currentQuestion is over 4 - run endQuiz
+  if (currentQuestion < 4) {
+    endQuiz();
+  }
   // Conditional for when timer reaches 0
   if (count === -1) {
     // Clear interval
     clearInterval(time);
-    // send to highscore HTML page to add their initials and score - or if timer is
+    // send to highscore HTML page to add their initials and score
+    endQuiz();
   }
 }
 
@@ -112,8 +116,7 @@ function checkAnswer(userInput) {
   } else {
     alert("Incorrect!");
     count -= 10;
-    // check if count is zero or negative redirect them to high score
-    currentQuestion++;
+
     if (currentQuestion < 4) {
       getNextQuestion();
     } else {
@@ -138,13 +141,9 @@ function getNextQuestion() {
 
   // Insert Options - Choice A
 
-  document.getElementById("option-1").innerHTML =
-    "<button class='opt-1'data-ans=" +
-    questions[currentQuestion].answers.a +
-    "" +
-    ">" +
-    questions[currentQuestion].answers.a +
-    "</button>";
+  document.getElementById(
+    "option-1"
+  ).innerHTML = `<button class='opt-1' data-ans="${questions[currentQuestion].answers.a}">${questions[currentQuestion].answers.a}</button>`;
 
   // Event Listener - Choice A
 
@@ -154,12 +153,9 @@ function getNextQuestion() {
   });
 
   // Insert Options - Choice B
-  document.getElementById("option-2").innerHTML =
-    "<button class='opt-2'data-ans=" +
-    questions[currentQuestion].answers.b +
-    ">" +
-    questions[currentQuestion].answers.b +
-    "</button>";
+  document.getElementById(
+    "option-2"
+  ).innerHTML = `<button class='opt-2' data-ans="${questions[currentQuestion].answers.b}">${questions[currentQuestion].answers.b}</button>`;
 
   // Event Listener - Choice B
   document.querySelector(".opt-2").addEventListener("click", function () {
@@ -168,12 +164,9 @@ function getNextQuestion() {
   });
 
   // Insert Options - Choice C
-  document.getElementById("option-3").innerHTML =
-    "<button class='opt-3'data-ans=" +
-    questions[currentQuestion].answers.c +
-    ">" +
-    questions[currentQuestion].answers.c +
-    "</button>";
+  document.getElementById(
+    "option-3"
+  ).innerHTML = `<button class='opt-3' data-ans="${questions[currentQuestion].answers.c}">${questions[currentQuestion].answers.c}</button>`;
 
   // Event Listener - Choice C
   document.querySelector(".opt-3").addEventListener("click", function () {
@@ -182,12 +175,9 @@ function getNextQuestion() {
   });
 
   // Insert Options - Choice D
-  document.getElementById("option-4").innerHTML =
-    "<button class ='opt-4' data-ans=" +
-    questions[currentQuestion].answers.d +
-    ">" +
-    questions[currentQuestion].answers.d;
-  ("</button>");
+  document.getElementById(
+    "option-4"
+  ).innerHTML = `<button class='opt-4' data-ans="${questions[currentQuestion].answers.c}">${questions[currentQuestion].answers.d}</button>`;
 
   // Event Listener - Choice D
   document.querySelector(".opt-4").addEventListener("click", function () {
@@ -207,7 +197,9 @@ function endQuiz() {
 
   // User variables go here
   var user = {
-    userInput: userInput.value(),
+    // userInput: userInput.value(),
+    userInput: userInput?.value,
+    //called the optional chaining operator. Checks if userInput.value exists first; if it doesn't exist, we should get undefined rather than a potentially-fatal error.
     scoreInput: count,
   };
 
