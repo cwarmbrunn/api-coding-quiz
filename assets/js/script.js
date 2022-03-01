@@ -1,15 +1,9 @@
 // Welcome Page Elements ======================
 const welcomeEl = document.querySelector("#welcome");
 
-// Controls Button Assignments ===================
+// Quiz Questions ===================
 
-/*
-const restartBtn = document.getElementById('restart);
-const prevBtn = document.getElementById('prev);
-const nextBtn = document.getElementById('next');
-const userScore = document.getElementById('user-score);
-const questionText = document.getElementById('question-text')
-*/
+const quizContentEl = document.querySelector("#quiz-questions");
 
 // Initials
 
@@ -87,8 +81,8 @@ function updateTimer() {
     "<p> Time Left: " + count + " second(s) left</p>";
   // Subtract time from countdown
   count--;
-  if (count < 1) {
-    return endQuiz();
+  if (count === 0) {
+    return restartQuiz();
   }
 }
 
@@ -186,8 +180,14 @@ function endQuiz() {
   scores.push(user);
   localStorage.setItem("user", JSON.stringify(scores));
   alert("Quiz has ended - congrats!");
+  return restartQuiz();
 }
 
+function restartQuiz() {
+  show(welcomeEl);
+  hide(timerEl);
+  hide(quizContentEl);
+}
 // Hides Elements
 function hide(element) {
   element.style.display = "none";
