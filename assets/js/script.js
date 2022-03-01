@@ -89,7 +89,7 @@ function updateTimer() {
   // Subtract time from countdown
   count--;
   // if currentQuestion is over 4 - run endQuiz
-  if (currentQuestion < 4) {
+  if (currentQuestion < 3) {
     endQuiz();
   }
   // Conditional for when timer reaches 0
@@ -109,20 +109,20 @@ function startQuiz() {
 function checkAnswer(userInput) {
   console.log("The user has selected the answer: " + userInput);
   // Conditional for Correct Answer - Verification
-  if (userInput === questions[currentQuestion].correctAnswer) {
-    alert("Correct!");
+  if (currentQuestion < questions.length) {
+    if (userInput === questions[currentQuestion].correctAnswer) {
+      alert("Correct!");
+      getNextQuestion();
+    } else {
+      alert("Incorrect! Penalty of 10 Seconds!");
+      getNextQuestion();
+      count -= 10;
+    }
 
     // Conditional for Incorrect Answer
   } else {
-    alert("Incorrect!");
-    count -= 10;
-
-    if (currentQuestion < 4) {
-      getNextQuestion();
-    } else {
-      clearInterval(timer);
-      endQuiz();
-    }
+    setInterval(time);
+    endQuiz();
   }
   currentQuestion++; // Move to the next question
 
@@ -130,8 +130,8 @@ function checkAnswer(userInput) {
 }
 
 function getNextQuestion() {
+  if (!questions[currentQuestion]) return;
   questions[currentQuestion].question;
-
   // Insert Question Text - Heading 1
   document.getElementById("question-text").innerHTML =
     "<h1 class='question'> Q:" +
