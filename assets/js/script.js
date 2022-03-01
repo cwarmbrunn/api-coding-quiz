@@ -11,13 +11,13 @@ const userScore = document.getElementById('user-score);
 const questionText = document.getElementById('question-text')
 */
 
-// Hide the Highscore Form
-// document.getElementById("highscoreForm").style.visibility = "hidden";
+// Initials
+
+var initials;
 
 // Start button is assigned to the startButton id
 const startButtonEl = document.querySelector("#startButton");
 
-const SubmitButtonEl = document.querySelector("#submitBtn");
 // Quiz Questions =======================
 let currentQuestion = 0;
 
@@ -91,16 +91,10 @@ function updateTimer() {
     "<p> Time Left: " + count + " second(s) left</p>";
   // Subtract time from countdown
   count--;
-  // if currentQuestion is over 4 - run endQuiz
-  if (currentQuestion < 3) {
-    endQuiz();
-  }
-  // Conditional for when timer reaches 0
-  if (count === -1) {
-    // Clear interval
-    clearInterval(time);
-    // send to highscore HTML page to add their initials and score
-    endQuiz();
+  // if currentQuestion is the last OR timer is 0
+  if (currentQuestion === 3 || count === 0) {
+    clearInterval(timer);
+    getInitials();
   }
 }
 
@@ -123,13 +117,10 @@ function checkAnswer(userInput) {
     }
 
     // Conditional for Incorrect Answer
-  } else {
-    setInterval(time);
-    endQuiz();
   }
 
   currentQuestion++;
-  
+
   getNextQuestion();
 }
 
@@ -192,20 +183,21 @@ function getNextQuestion() {
 
 // Function to End Quiz
 
+function getInitials() {
+  if (count === -1 || currentQuestion < 3) {
+    initials = prompt("Enter Initials");
+  }
+}
+
 function endQuiz() {
-  // when the last questions is answered
-  // document.getElementById("highscoreForm").style.visibility = "visible";
+  getInitials();
 
   score = count;
 
-  var scoreInput = document.querySelector("#score");
-  var userInput = document.querySelector("#userID");
-
   // User variables go here
   var user = {
-    // userInput: userInput.value(),
-    userInput: userInput?.value,
-    //called the optional chaining operator. Checks if userInput.value exists first; if it doesn't exist, we should get undefined rather than a potentially-fatal error.
+    userInitials: initials?.value,
+
     scoreInput: count,
   };
 
@@ -231,12 +223,4 @@ if (startButtonEl) {
     startQuiz();
     getNextQuestion();
   });
-}
-
-// Submit Scores Button
-if (SubmitButtonEl) {
-  SubmitButtonEl.addEventListener(
-    "click",
-    (window.location.href = "highscores.html")
-  );
 }
