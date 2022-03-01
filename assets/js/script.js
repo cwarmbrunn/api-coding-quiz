@@ -14,7 +14,7 @@ const questionText = document.getElementById('question-text')
 // Start button is assigned to the startButton id
 const startButtonEl = document.querySelector("#startButton");
 
-const SubmitButtonEl = document.querySelector("#submitScore");
+const SubmitButtonEl = document.querySelector("#submitBtn");
 // Quiz Questions =======================
 let currentQuestion = 0;
 
@@ -189,8 +189,10 @@ function getNextQuestion() {
 // Function to End Quiz
 
 function endQuiz() {
+  // when the last questions is answered
+  document.getElementById("highscoreForm").style.visibility = "visible";
+
   score = count;
-  document.getElementById(("score".innerHTML = "<p>" + score + "</p>"));
 
   var scoreInput = document.querySelector("#score");
   var userInput = document.querySelector("#userID");

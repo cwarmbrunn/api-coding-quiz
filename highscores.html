@@ -16,25 +16,16 @@
 
 <body>
     <!-- High Scores Go Here -->
-    <div id="high-scores">
-        <h1>Quiz Leaderboard</h1>
-        <p>See how you did!</p>
-        <div id="scores">
+    <h1> Let's See How You Did!</h1>
+    <form id="highscoreForm">
+        <input id="userID" placeholder="Tell us your initials" />
+        <button id="submitBtn">Submit</button>
+    </form>
+    <footer>
+        <p>&copy; 2022 by Christina Warmbrunn</p>
 
-            <p>Your final score is: <span id="score"></span></p>
-
-            <p>Enter your initials: <input type="text" id="userID"></p>
-            <button id="submitScore"> Submit</button>
-
-        </div>
-    </div>
-</body>
-
-<footer>
-    <p>&copy; 2022 by Christina Warmbrunn</p>
-
-</footer>
-<!-- PRIORITY: JavaScript File with Event Listener Buttons -->
-<script src="./assets/js/script.js"></script>
+    </footer>
+    <!-- PRIORITY: JavaScript File with Event Listener Buttons -->
+    <script src="./assets/js/script.js"></script>
 
 </html>
