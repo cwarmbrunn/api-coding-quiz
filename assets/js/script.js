@@ -12,7 +12,7 @@ const questionText = document.getElementById('question-text')
 */
 
 // Hide the Highscore Form 
-document.getElementById("highscoreForm").style.visibility = "hidden";
+// document.getElementById("highscoreForm").style.visibility = "hidden";
 
 // Start button is assigned to the startButton id
 const startButtonEl = document.querySelector("#startButton");
