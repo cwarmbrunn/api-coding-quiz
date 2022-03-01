@@ -11,6 +11,9 @@ const userScore = document.getElementById('user-score);
 const questionText = document.getElementById('question-text')
 */
 
+// Hide the Highscore Form 
+document.getElementById("highscoreForm").style.visibility = "hidden";
+
 // Start button is assigned to the startButton id
 const startButtonEl = document.querySelector("#startButton");
 
@@ -124,7 +127,6 @@ function checkAnswer(userInput) {
     setInterval(time);
     endQuiz();
   }
-  currentQuestion++; // Move to the next question
 
   getNextQuestion();
 }
