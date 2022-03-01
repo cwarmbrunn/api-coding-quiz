@@ -30,7 +30,7 @@ let questions = [
       c: "Alerts",
       d: "Numbers",
     },
-    correctAnswer: "Booleans",
+    correctAnswer: "Alerts",
   },
 
   {
@@ -87,6 +87,9 @@ function updateTimer() {
     "<p> Time Left: " + count + " second(s) left</p>";
   // Subtract time from countdown
   count--;
+  if (count < 1) {
+    return endQuiz();
+  }
 }
 
 // Start Quiz Function - Timer Runs
@@ -111,7 +114,9 @@ function checkAnswer(userInput) {
 }
 
 function getNextQuestion() {
-  if (!questions[currentQuestion]) endQuiz();
+  if (!questions[currentQuestion]) {
+    return endQuiz();
+  }
   // Insert Question Text - Heading 1
   document.getElementById("question-text").innerHTML =
     "<h1 class='question'> Q:" +
@@ -168,19 +173,8 @@ function getNextQuestion() {
 
 // Function to End Quiz
 
-function getInitials() {
-  // if currentQuestion is the last OR timer is 0
-  if (currentQuestion < 4) {
-    initials = prompt("Enter Initials");
-  } else {
-    getNextQuestion();
-  }
-}
-
 function endQuiz() {
-  getInitials();
-
-  score = count;
+  initials = prompt("Enter Initials");
 
   // User variables go here
   var user = {
