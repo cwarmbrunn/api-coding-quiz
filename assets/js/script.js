@@ -106,8 +106,6 @@ function checkAnswer(userInput) {
       getNextQuestion();
       count -= 10;
     }
-
-    endQuiz();
   }
 
   currentQuestion++;
@@ -115,7 +113,7 @@ function checkAnswer(userInput) {
 }
 
 function getNextQuestion() {
-  if (!questions[currentQuestion]) return;
+  if (!questions[currentQuestion]) endQuiz();
   // questions[currentQuestion].question;
   // Insert Question Text - Heading 1
   document.getElementById("question-text").innerHTML =
