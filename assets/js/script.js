@@ -97,15 +97,13 @@ function startQuiz() {
 function checkAnswer(userInput) {
   console.log("The user has selected the answer: " + userInput);
   // Conditional for Correct Answer - Verification
-  if (currentQuestion < questions.length) {
-    if (userInput === questions[currentQuestion].correctAnswer) {
-      alert("Correct!");
-      getNextQuestion();
-    } else {
-      alert("Incorrect! Penalty of 10 Seconds!");
-      getNextQuestion();
-      count -= 10;
-    }
+  if (userInput === questions[currentQuestion].correctAnswer) {
+    alert("Correct!");
+    getNextQuestion();
+  } else {
+    alert("Incorrect! Penalty of 10 Seconds!");
+    getNextQuestion();
+    count -= 10;
   }
 
   currentQuestion++;
@@ -114,7 +112,6 @@ function checkAnswer(userInput) {
 
 function getNextQuestion() {
   if (!questions[currentQuestion]) endQuiz();
-  // questions[currentQuestion].question;
   // Insert Question Text - Heading 1
   document.getElementById("question-text").innerHTML =
     "<h1 class='question'> Q:" +
