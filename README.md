@@ -28,6 +28,6 @@ You can clone this repo - no special instructions to load this!
 
 **Screenshots:**
 
-![Timed Quiz GIF](./assets/images/timed-quiz2.gif)
+![GIF of Timed Quiz being used](./assets/images/timed-quiz-final.gif)
 
-![Timed Quiz Screenshot](/assets/images/timed-quiz.jpg)
+![Timed Quiz Screenshot](./assets/images/timed-quiz.jpg)

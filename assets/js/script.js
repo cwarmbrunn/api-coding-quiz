@@ -81,7 +81,7 @@ function updateTimer() {
     "<p> Time Left: " + count + " second(s) left</p>";
   // Subtract time from countdown
   count--;
-  if (count === 0) {
+  if (count == 0) {
     return restartQuiz();
   }
 }
@@ -179,13 +179,15 @@ function endQuiz() {
 
   scores.push(user);
   localStorage.setItem("user", JSON.stringify(scores));
-  alert("Quiz has ended - congrats!");
+  alert(`Quiz has ended - congrats! Your score was ${count} points.`);
   return restartQuiz();
 }
 
 function restartQuiz() {
   show(welcomeEl);
   clearInterval(time);
+  // restart quiz for user?
+  startQuiz();
   hide(timerEl);
   hide(quizContentEl);
 }
