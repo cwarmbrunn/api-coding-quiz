@@ -179,15 +179,15 @@ function endQuiz() {
 
   scores.push(user);
   localStorage.setItem("user", JSON.stringify(scores));
-  alert(`Quiz has ended - congrats! Your score was ${count} points.`);
+  alert(
+    `Quiz has ended - congrats ${initials}! Your score was ${count} points.`
+  );
   return restartQuiz();
 }
 
 function restartQuiz() {
   show(welcomeEl);
   clearInterval(time);
-  // restart quiz for user?
-  startQuiz();
   hide(timerEl);
   hide(quizContentEl);
 }
