@@ -102,7 +102,6 @@ function checkAnswer(userInput) {
     getNextQuestion();
     count -= 10;
   }
-
   currentQuestion++;
   getNextQuestion();
 }
@@ -186,8 +185,9 @@ function endQuiz() {
 }
 
 function restartQuiz() {
-  // show(welcomeEl);
-  // clearInterval(time);
+  show(welcomeEl);
+  clearInterval(time);
+  hide(quizContentEl);
 }
 // Hides Elements
 function hide(element) {
