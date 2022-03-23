@@ -81,7 +81,8 @@ function updateTimer() {
     "<p> Time Left: " + count + " second(s) left</p>";
   // Subtract time from countdown
   count--;
-  if (count == -1) {
+  if (count <= 0) {
+    count = 0;
     endQuiz();
   }
 }
@@ -167,6 +168,7 @@ function getNextQuestion() {
 // Function to End Quiz
 
 function endQuiz() {
+  clearInterval(time);
   initials = prompt("Enter Initials");
 
   // User variables go here
@@ -181,12 +183,15 @@ function endQuiz() {
   alert(
     `Quiz has ended - congrats ${initials}! Your score was ${count} points.`
   );
+
   return restartQuiz();
 }
 
 function restartQuiz() {
+  count = 30;
+  currentQuestion = 0;
+  hide(timerEl);
   show(welcomeEl);
-  clearInterval(time);
   hide(quizContentEl);
 }
 // Hides Elements
@@ -204,6 +209,8 @@ if (startButtonEl) {
   // When user clicks the start button, run the following functions
   startButtonEl.addEventListener("click", function () {
     hide(welcomeEl);
+    show(timerEl);
+    show(quizContentEl);
     startQuiz();
     getNextQuestion();
   });
