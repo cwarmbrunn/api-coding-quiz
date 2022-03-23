@@ -64,7 +64,7 @@ const timerEl = document.querySelector("#timer");
 
 var interval;
 var time = null;
-var count = 90;
+var count = 30;
 
 let scores = JSON.parse(localStorage.getItem("user")) || [];
 
@@ -81,8 +81,8 @@ function updateTimer() {
     "<p> Time Left: " + count + " second(s) left</p>";
   // Subtract time from countdown
   count--;
-  if (count == 0) {
-    return restartQuiz();
+  if (count == -1) {
+    endQuiz();
   }
 }
 
@@ -186,10 +186,8 @@ function endQuiz() {
 }
 
 function restartQuiz() {
-  show(welcomeEl);
-  clearInterval(time);
-  hide(timerEl);
-  hide(quizContentEl);
+  // show(welcomeEl);
+  // clearInterval(time);
 }
 // Hides Elements
 function hide(element) {
