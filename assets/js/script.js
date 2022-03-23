@@ -64,7 +64,7 @@ const timerEl = document.querySelector("#timer");
 
 var interval;
 var time = null;
-var count = 30;
+var count = 90;
 
 let scores = JSON.parse(localStorage.getItem("user")) || [];
 
