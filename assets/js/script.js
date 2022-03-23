@@ -188,7 +188,8 @@ function endQuiz() {
 }
 
 function restartQuiz() {
-  count = 30;
+  clearInterval(time);
+  count = 90;
   currentQuestion = 0;
   hide(timerEl);
   show(welcomeEl);
