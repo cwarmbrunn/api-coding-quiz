@@ -69,7 +69,7 @@ button {
 }
 
 button:hover {
-  background-color: rgba(233, 170, 159, 0.8);
+  background-color: var(--secondary);
   box-shadow: 0 0px var(--tertiary);
   top: -3px;
 }

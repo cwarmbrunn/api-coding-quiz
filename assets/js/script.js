@@ -5,7 +5,10 @@ const welcomeEl = document.querySelector("#welcome");
 
 const quizContentEl = document.querySelector("#quiz-questions");
 
+// High Score Elements ===================
 const highScoresEl = document.querySelector("#highscores");
+
+const highScoreBtnEl = document.querySelector("#highScoreBtn");
 // Initials
 
 var initials;
@@ -72,7 +75,7 @@ const timerEl = document.querySelector("#timer");
 
 var interval;
 var time = null;
-var count = 90;
+var count = 40;
 
 let scores = JSON.parse(localStorage.getItem("user")) || [];
 
@@ -178,16 +181,6 @@ function getNextQuestion() {
 function endQuiz() {
   clearInterval(time);
   initials = prompt("Enter Initials");
-
-  // User variables go here
-  var user = {
-    userInitials: initials,
-
-    scoreInput: count,
-  };
-
-  scores.push(user);
-  localStorage.setItem("user", JSON.stringify(scores));
   alert(
     `Quiz has ended - congrats ${initials}! Your score was ${count} points.`
   );
@@ -215,13 +208,12 @@ function endQuiz() {
 
   showHighScores();
 }
-
-var i = 0;
 function showHighScores() {
   hide(timerEl);
   hide(quizContentEl);
-  show(highScoresEl);
   hide(welcomeEl);
+  show(highScoresEl);
+  show(highScoreBtnEl);
 
   var savedHighScores = localStorage.getItem("high scores");
 
@@ -232,20 +224,21 @@ function showHighScores() {
   var storedHighScores = JSON.parse(savedHighScores);
   console.log(storedHighScores);
 
-  for (; i < storedHighScores; i++) {
+  for (var j = 0; j < storedHighScores.length; j++) {
     var newHighScore = document.createElement("p");
-    newHighScore.innerHTML = storedHighScores[i].initials =
-      ": " + storedHighScores[i].score;
+    newHighScore.innerHTML =
+      storedHighScores[j].initials + ": " + storedHighScores[j].score;
     highScoresEl.appendChild(newHighScore);
   }
 }
 function restartQuiz() {
   clearInterval(time);
-  count = 90;
+  count = 40;
   currentQuestion = 0;
   hide(timerEl);
   hide(quizContentEl);
   hide(highScoresEl);
+  hide(highScoreBtnEl);
   show(welcomeEl);
 }
 // Hides Elements
@@ -264,6 +257,7 @@ if (startButtonEl) {
   startButtonEl.addEventListener("click", function () {
     hide(welcomeEl);
     hide(highScoresEl);
+    hide(highScoreBtnEl);
     show(timerEl);
     show(quizContentEl);
     startQuiz();
@@ -279,5 +273,6 @@ goBackButtonEl.addEventListener("click", function () {
 // When user clicks the clear high scores button, run the following function
 clearScoresButtonEl.addEventListener("click", function () {
   window.localStorage.removeItem("user");
-  highScoresEl.innerText = "High Scores Cleared! Refresh the page to restart the quiz.";
+  window.localStorage.removeItem("high scores");
+  highScoresEl.innerText = "High Scores Cleared!";
 });

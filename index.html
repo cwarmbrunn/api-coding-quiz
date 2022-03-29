@@ -39,7 +39,7 @@
             <br>Keep in mind that <strong>incorrect answers will
                 penalize your score/time by <em>10 seconds</em></strong>
         </p>
-        <button id="startButton" class="btn btn-outline-primary">Start Quiz</button>
+        <button id="startButton" class="button">Start Quiz</button>
 
 
     </div>
@@ -60,16 +60,18 @@
     <!-- Highscores Section -->
     <div id="highscores" style="display: none;">
         <h2>
-            Highscores
+            High Scores
         </h2>
+        <p class="warningText"></p>
         <div id="listOfScores" class="list-group list-group-flush pt-2 pb-3 mb-2">
             <!-- Append each score as a new paragraph here -->
-            <p>
-                <button type="submit" class="btn btn-warning mt-3 mr-3" id="goBackBtn">Go Back Button</button>
-                <button type="submit" class="btn btn-danger mt-3" id="clearHighScoresBtn">Clear High
-                    Scores</button>
-            </p>
+            <p></p>
         </div>
+    </div>
+    <div id="highScoreBtn" style="display: none;">
+        <button type="submit" class="btn btn-warning mt-3 mr-3" id="goBackBtn">Go Back Button</button>
+        <button type="submit" class="btn btn-danger mt-3" id="clearHighScoresBtn">Clear High
+            Scores</button>
     </div>
 </body>
 <footer>

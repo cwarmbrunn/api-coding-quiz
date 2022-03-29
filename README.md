@@ -1,4 +1,4 @@
-## Web APIs Coding Quiz
+### Coding Quiz
 
 **Project Description/Summary:**
 
@@ -8,7 +8,7 @@ Building a responsive site that allows users to take timed quizzes to test their
 
 **Live Site:**
 
-Head over to https://cwarmbrunn.github.io/api-coding-quiz/ to view the page live!
+Head over to https://cwarmbrunn.github.io/coding-quiz/ to view the page live!
 
 ---
 
@@ -17,6 +17,7 @@ Head over to https://cwarmbrunn.github.io/api-coding-quiz/ to view the page live
 - JavaScript
 - CSS
 - HTML
+- Bootstrap
 
 ---
 
@@ -27,7 +28,5 @@ You can clone this repo - no special instructions to load this!
 ---
 
 **Screenshots:**
-
-![GIF of Timed Quiz being used](./assets/images/timed-quiz-final.gif)
 
 ![Timed Quiz Screenshot](./assets/images/timed-quiz.jpg)
