@@ -20,8 +20,8 @@ var initials;
 // Start button is assigned to the startButton id
 const startButtonEl = document.querySelector("#startButton");
 
-// Back button is assigned to the goBack id
-const goBackButtonEl = document.querySelector("#goBackBtn");
+// Back button is assigned to the tryAgain id
+const tryAgainButtonEl = document.querySelector("#tryAgainBtn");
 
 // Clear button is assigned to the clearHighScores id
 
@@ -253,7 +253,7 @@ function showHighScores() {
       " : " +
       storedHighScores[j].score +
       "</p>";
-    highScoresEl.appendChild(newHighScore);
+    listOfScoresEl.append(newHighScore);
   }
 }
 function restartQuiz() {
@@ -290,8 +290,8 @@ if (startButtonEl) {
   });
 }
 
-// When user clicks the go back button, run the following function
-goBackButtonEl.addEventListener("click", function () {
+// When user clicks the try again button, run the following function
+tryAgainButtonEl.addEventListener("click", function () {
   restartQuiz();
 });
 
@@ -299,10 +299,8 @@ goBackButtonEl.addEventListener("click", function () {
 clearScoresButtonEl.addEventListener("click", function () {
   window.localStorage.removeItem("user");
   window.localStorage.removeItem("high scores");
-  hide(highScoresEl);
-  const text = document.querySelectorAll(".highscore");
-  for (const el of text) {
-    el.parentNode.removeChild(el);
-  }
-  alert("Scores have been cleared, please try again!");
+  // hide(highScoresEl);
+  listOfScoresEl.innerHTML =
+    "<p> Scores have been cleared! </p>" +
+    "<p> Want to try again? Click the <strong>Try Again</strong> button! </p>";
 });
