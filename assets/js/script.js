@@ -302,5 +302,6 @@ if (clearScoresButtonEl)
     window.localStorage.removeItem("user");
     window.localStorage.removeItem("high scores");
     hide(highScoresEl);
+    hide(listOfScoresEl);
     alert("Scores have been cleared, please try again!");
   });
