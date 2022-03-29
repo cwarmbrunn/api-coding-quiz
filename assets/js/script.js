@@ -197,7 +197,6 @@ function endQuiz() {
 
   // Grab the "user" key from localStorage
   var savedHighScores = localStorage.getItem("user");
-  var scoresArray;
 
   // If savedHighScores is null, set scoresArray equal to an empty array
   if (savedHighScores === null) {
@@ -249,7 +248,7 @@ function showHighScores() {
   for (var j = 0; j < storedHighScores.length; j++) {
     var newHighScore = document.createElement("p");
     newHighScore.innerHTML =
-      "<p id='highscore'>" +
+      "<p class='highscore'>" +
       storedHighScores[j].initials +
       " : " +
       storedHighScores[j].score +
@@ -297,11 +296,13 @@ goBackButtonEl.addEventListener("click", function () {
 });
 
 // When user clicks the clear high scores button, run the following function
-if (clearScoresButtonEl)
-  clearScoresButtonEl.addEventListener("click", function () {
-    window.localStorage.removeItem("user");
-    window.localStorage.removeItem("high scores");
-    hide(highScoresEl);
-    hide(listOfScoresEl);
-    alert("Scores have been cleared, please try again!");
-  });
+clearScoresButtonEl.addEventListener("click", function () {
+  window.localStorage.removeItem("user");
+  window.localStorage.removeItem("high scores");
+  hide(highScoresEl);
+  const text = document.querySelectorAll(".highscore");
+  for (const el of text) {
+    el.parentNode.removeChild(el);
+  }
+  alert("Scores have been cleared, please try again!");
+});
