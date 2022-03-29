@@ -5,12 +5,20 @@ const welcomeEl = document.querySelector("#welcome");
 
 const quizContentEl = document.querySelector("#quiz-questions");
 
+const highScoresEl = document.querySelector("#highscores");
 // Initials
 
 var initials;
 
 // Start button is assigned to the startButton id
 const startButtonEl = document.querySelector("#startButton");
+
+// Back button is assigned to the goBack id
+const goBackButtonEl = document.querySelector("#goBackBtn");
+
+// Clear button is assigned to the clearHighScores id
+
+const clearScoresButtonEl = document.querySelector("#clearHighScoresBtn");
 
 // Quiz Questions =======================
 let currentQuestion = 0;
@@ -184,16 +192,61 @@ function endQuiz() {
     `Quiz has ended - congrats ${initials}! Your score was ${count} points.`
   );
 
-  return restartQuiz();
+  show(highScoresEl);
+  hide(quizContentEl);
+  hide(timerEl);
+  var savedHighScores = localStorage.getItem("user");
+  var scoresArray;
+
+  if (savedHighScores === null) {
+    scoresArray = [];
+  } else {
+    scoresArray = JSON.parse(savedHighScores);
+  }
+  var userScore = {
+    initials: initials,
+    score: count,
+  };
+  console.log(userScore);
+  scoresArray.push(userScore);
+
+  var scoresArrayString = JSON.stringify(scoresArray);
+  window.localStorage.setItem("high scores", scoresArrayString);
+
+  showHighScores();
 }
 
+var i = 0;
+function showHighScores() {
+  hide(timerEl);
+  hide(quizContentEl);
+  show(highScoresEl);
+  hide(welcomeEl);
+
+  var savedHighScores = localStorage.getItem("high scores");
+
+  if (savedHighScores === null) {
+    return;
+  }
+  console.log(savedHighScores);
+  var storedHighScores = JSON.parse(savedHighScores);
+  console.log(storedHighScores);
+
+  for (; i < storedHighScores; i++) {
+    var newHighScore = document.createElement("p");
+    newHighScore.innerHTML = storedHighScores[i].initials =
+      ": " + storedHighScores[i].score;
+    highScoresEl.appendChild(newHighScore);
+  }
+}
 function restartQuiz() {
   clearInterval(time);
   count = 90;
   currentQuestion = 0;
   hide(timerEl);
-  show(welcomeEl);
   hide(quizContentEl);
+  hide(highScoresEl);
+  show(welcomeEl);
 }
 // Hides Elements
 function hide(element) {
@@ -210,9 +263,21 @@ if (startButtonEl) {
   // When user clicks the start button, run the following functions
   startButtonEl.addEventListener("click", function () {
     hide(welcomeEl);
+    hide(highScoresEl);
     show(timerEl);
     show(quizContentEl);
     startQuiz();
     getNextQuestion();
   });
 }
+
+// When user clicks the go back button, run the following function
+goBackButtonEl.addEventListener("click", function () {
+  restartQuiz();
+});
+
+// When user clicks the clear high scores button, run the following function
+clearScoresButtonEl.addEventListener("click", function () {
+  window.localStorage.removeItem("user");
+  highScoresEl.innerText = "High Scores Cleared! Refresh the page to restart the quiz.";
+});
