@@ -8,6 +8,10 @@ const quizContentEl = document.querySelector("#quiz-questions");
 // High Score Elements ===================
 const highScoresEl = document.querySelector("#highscores");
 
+const highScoresListEl = document.querySelector("#highScoresList");
+
+const listOfScoresEl = document.querySelector("#listOfScores");
+
 const highScoreBtnEl = document.querySelector("#highScoreBtn");
 // Initials
 
@@ -185,27 +189,42 @@ function endQuiz() {
     `Quiz has ended - congrats ${initials}! Your score was ${count} points.`
   );
 
+  // High Score Functionality
+
   show(highScoresEl);
   hide(quizContentEl);
   hide(timerEl);
+
+  // Grab the "user" key from localStorage
   var savedHighScores = localStorage.getItem("user");
   var scoresArray;
 
+  // If savedHighScores is null, set scoresArray equal to an empty array
   if (savedHighScores === null) {
     scoresArray = [];
   } else {
+    // Else parse the savedHighScores with JSON.parse
     scoresArray = JSON.parse(savedHighScores);
   }
+
+  // Sets the userScore variable equal to the initials and the score to count
   var userScore = {
     initials: initials,
     score: count,
   };
   console.log(userScore);
+
+  // Pushes the userScore into the scoresArray
+
   scoresArray.push(userScore);
 
+  // Stringify the scoresArray
   var scoresArrayString = JSON.stringify(scoresArray);
+
+  // Sets localStorage item to "high scores"
   window.localStorage.setItem("high scores", scoresArrayString);
 
+  // Run showHighScores() function
   showHighScores();
 }
 function showHighScores() {
@@ -215,19 +234,26 @@ function showHighScores() {
   show(highScoresEl);
   show(highScoreBtnEl);
 
+  // Grab item from localStorage
   var savedHighScores = localStorage.getItem("high scores");
 
   if (savedHighScores === null) {
     return;
   }
   console.log(savedHighScores);
+  // Parse the savedHighScores
   var storedHighScores = JSON.parse(savedHighScores);
   console.log(storedHighScores);
-
+  // Loop through the saved initials and score and then append the child to the
+  // highScoresEl
   for (var j = 0; j < storedHighScores.length; j++) {
     var newHighScore = document.createElement("p");
     newHighScore.innerHTML =
-      storedHighScores[j].initials + ": " + storedHighScores[j].score;
+      "<p id='highscore'>" +
+      storedHighScores[j].initials +
+      " : " +
+      storedHighScores[j].score +
+      "</p>";
     highScoresEl.appendChild(newHighScore);
   }
 }
@@ -271,8 +297,10 @@ goBackButtonEl.addEventListener("click", function () {
 });
 
 // When user clicks the clear high scores button, run the following function
-clearScoresButtonEl.addEventListener("click", function () {
-  window.localStorage.removeItem("user");
-  window.localStorage.removeItem("high scores");
-  highScoresEl.innerText = "High Scores Cleared!";
-});
+if (clearScoresButtonEl)
+  clearScoresButtonEl.addEventListener("click", function () {
+    window.localStorage.removeItem("user");
+    window.localStorage.removeItem("high scores");
+    hide(highScoresEl);
+    alert("Scores have been cleared, please try again!");
+  });
