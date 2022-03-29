@@ -75,7 +75,7 @@ const timerEl = document.querySelector("#timer");
 
 var interval;
 var time = null;
-var count = 40;
+var count = 90;
 
 let scores = JSON.parse(localStorage.getItem("user")) || [];
 
@@ -233,7 +233,7 @@ function showHighScores() {
 }
 function restartQuiz() {
   clearInterval(time);
-  count = 40;
+  count = 90;
   currentQuestion = 0;
   hide(timerEl);
   hide(quizContentEl);
